@@ -81,7 +81,7 @@ int count_common_paths(int n, vector <pair<int, int>> &edges1, vector <pair<int,
     return dp[n];
 }
 
-int main() {
+int main(void) {
     ifstream fin("numarare.in");
     ofstream fout("numarare.out");
 

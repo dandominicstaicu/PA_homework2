@@ -19,5 +19,9 @@
 ./numarare.cpp:75:  Missing space around colon in range-based for loop  [whitespace/forcolon] [2]
 ./numarare.cpp:76:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
 ./numarare.cpp:76:  At least two spaces is best between code and comments  [whitespace/comments] [2]
+./trenuri.cpp:30:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+./trenuri.cpp:54:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
+./trenuri.cpp:73:  Could not find a newline character at the end of the file.  [whitespace/ending_newline] [5]
 Done processing ./numarare.cpp
-Total errors found: 21
+Done processing ./trenuri.cpp
+Total errors found: 24
