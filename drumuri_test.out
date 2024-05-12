@@ -1,0 +1,5 @@
+64
+Path from x to z: [(814, 742), (464, 814)]
+Path from y to z: [(72, 742)]
+Used edges: {(72, 742), (464, 814), (814, 742)}
+Total minimal cost: 64
