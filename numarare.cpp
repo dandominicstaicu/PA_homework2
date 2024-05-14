@@ -7,15 +7,18 @@
 
 using namespace std;
 
+typedef vector <vector<int>> matint;
+typedef vector <pair<int, int>> edges;
+
 // Topologically sort a Directed Acyclic Graphs (DAG)
-vector<int> topological_sort(int n, const vector <vector<int>> &adj) {
-    vector<int> in_degree(n + 1, 0);  // Vector to store the in-degree of each node
-    vector<int> sorted_nodes; // Vector to store nodes in topologically sorted order
-    queue<int> q; // Queue to manage nodes with in-degree of 0 during sorting
+vector<int> topological_sort(int n, const matint &adj) {
+    vector<int> in_degree(n + 1, 0);  // Store the in-degree of each node
+    vector<int> sorted_nodes;  // Nodes in topologically sorted order
+    queue<int> q;  // Queue to manage nodes with in-degree of 0 during sorting
 
     // Compute the internal degree for each node
     for (int u = 1; u <= n; ++u) {
-        for (int v: adj[u]) {
+        for (int v : adj[u]) {
             in_degree[v]++;
         }
     }
@@ -31,10 +34,10 @@ vector<int> topological_sort(int n, const vector <vector<int>> &adj) {
     while (!q.empty()) {
         int node = q.front();
         q.pop();
-        sorted_nodes.push_back(node); // Add to the result list
+        sorted_nodes.push_back(node);  // Add to the result list
 
-        // Decrement in-degree of neighbors and enqueue if in-degree becomes zero
-        for (int neighbor: adj[node]) {
+        // Decrement in-degree of neighbors and enq if in-degree becomes zero
+        for (int neighbor : adj[node]) {
             --in_degree[neighbor];
             if (in_degree[neighbor] == 0) {
                 q.push(neighbor);
@@ -47,18 +50,20 @@ vector<int> topological_sort(int n, const vector <vector<int>> &adj) {
 }
 
 // Compute the number of elementary ways
-int count_common_paths(int n, vector <pair<int, int>> &edges1, vector <pair<int, int>> &edges2) {
-    vector <set<int>> adj1(n + 1); // Adjacency list for the first graph
-    vector <vector<int>> adj_common(n + 1); // Adjacency list for the intersection of the graphs
-    vector<int> dp(n + 1, 0); // Dynamic programming table to store the number of paths to each node
+int count_common_paths(int n, edges &edges1, edges &edges2) {
+    vector <set<int>> adj1(n + 1);  // Adjacency list for the first graph
+    matint adj_common(n + 1);  // Adjacency list for the intersection of graphs
+
+    // Dynamic programming table to store the number of paths to each node
+    vector<int> dp(n + 1, 0);
 
     // Build the adjacency list for the 1st graph
-    for (auto &edge: edges1) {
+    for (auto &edge : edges1) {
         adj1[edge.first].insert(edge.second);
     }
 
     // Build the adjacency list for the intersection of the two graphs
-    for (auto &edge: edges2) {
+    for (auto &edge : edges2) {
         if (adj1[edge.first].count(edge.second)) {
             adj_common[edge.first].push_back(edge.second);
         }
@@ -70,10 +75,11 @@ int count_common_paths(int n, vector <pair<int, int>> &edges1, vector <pair<int,
     // Set dp[1] = 1 because there is only one way from 1 to 1
     dp[1] = 1;
 
-    // Calculate the number of paths to each node using the topologically sorted list
-    for (int node: sorted_nodes) {
-        for (int neighbor: adj_common[node]) {
-            dp[neighbor] = (dp[neighbor] + dp[node]) % MOD; // Update the path count using modulo operation
+    // Calculate the number of paths to each node using the topo sorted list
+    for (int node : sorted_nodes) {
+        for (int neighbor : adj_common[node]) {
+            // Update the path count using modulo operation
+            dp[neighbor] = (dp[neighbor] + dp[node]) % MOD;
         }
     }
 
@@ -89,7 +95,7 @@ int main(void) {
     fin >> n >> m;
 
     // Vectors to store edges for the two graphs
-    vector <pair<int, int>> edges1(m), edges2(m);
+    edges edges1(m), edges2(m);
 
     for (int i = 0; i < m; i++) {
         fin >> edges1[i].first >> edges1[i].second;
