@@ -14,8 +14,8 @@ int main(void) {
     string start, destination;
     fin >> start >> destination;
 
-    int M;
-    fin >> M;
+    int m;
+    fin >> m;
 
     unordered_map <string, vector<string>> graph;
     unordered_map<string, int> in_degree;
@@ -23,7 +23,7 @@ int main(void) {
     unordered_map<string, bool> visited;
 
     string x, y;
-    for (int i = 0; i < M; ++i) {
+    for (int i = 0; i < m; ++i) {
         fin >> x >> y;
 
         // Construct the graph as adjacency list
@@ -41,7 +41,7 @@ int main(void) {
     queue <string> q;
 
     // Find all nodes with zero in-degree to start topological sort
-    for (auto &kv: visited) {
+    for (auto &kv : visited) {
         if (in_degree[kv.first] == 0) {
             q.push(kv.first);
         }
@@ -53,7 +53,7 @@ int main(void) {
         string node = q.front();
         q.pop();
         topo_order.push_back(node);
-        for (const string &neighbor: graph[node]) {
+        for (const string &neighbor : graph[node]) {
             // Reduce in-degree of each neighbor
             in_degree[neighbor]--;
 
@@ -68,14 +68,12 @@ int main(void) {
     // Initialize DP table with start city having 1 (visited)
     dp[start] = 1;
 
-    for (const string &node: topo_order) {
+    for (const string &node : topo_order) {
         // Process only reachable nodes
         if (dp.count(node)) {  // If there's a path to this node
-            for (const string &neighbor: graph[node]) {
-                // Update DP table: dp[neighbor] = max(dp[neighbor], dp[node] + 1)
-                if (dp[node] + 1 > dp[neighbor]) {
-                    dp[neighbor] = dp[node] + 1;
-                }
+            for (const string &neighbor : graph[node]) {
+                // Update DP table:
+                dp[neighbor] = max(dp[neighbor], dp[node] + 1);
             }
         }
     }

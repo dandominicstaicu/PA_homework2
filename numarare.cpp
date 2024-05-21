@@ -7,11 +7,11 @@
 
 using namespace std;
 
-typedef vector <vector<int>> matint;
-typedef vector <pair<int, int>> edges;
+typedef vector <vector<int>> matint_t;
+typedef vector <pair<int, int>> edges_t;
 
 // Topologically sort a Directed Acyclic Graphs (DAG)
-vector<int> topological_sort(int n, const matint &adj) {
+vector<int> topological_sort(int n, const matint_t &adj) {
     vector<int> in_degree(n + 1, 0);  // Store the in-degree of each node
     vector<int> sorted_nodes;  // Nodes in topologically sorted order
     queue<int> q;  // Queue to manage nodes with in-degree of 0 during sorting
@@ -50,9 +50,9 @@ vector<int> topological_sort(int n, const matint &adj) {
 }
 
 // Compute the number of elementary ways
-int count_common_paths(int n, edges &edges1, edges &edges2) {
+int count_common_paths(int n, edges_t &edges1, edges_t &edges2) {
     vector <set<int>> adj1(n + 1);  // Adjacency list for the first graph
-    matint adj_common(n + 1);  // Adjacency list for the intersection of graphs
+    matint_t adj_common(n + 1);  // Adjacency list for the intersection of graphs
 
     // Dynamic programming table to store the number of paths to each node
     vector<int> dp(n + 1, 0);
@@ -95,7 +95,7 @@ int main(void) {
     fin >> n >> m;
 
     // Vectors to store edges for the two graphs
-    edges edges1(m), edges2(m);
+    edges_t edges1(m), edges2(m);
 
     for (int i = 0; i < m; i++) {
         fin >> edges1[i].first >> edges1[i].second;

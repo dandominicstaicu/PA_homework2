@@ -1,17 +1,3 @@
-./dij.cpp:16:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
-./dij.cpp:19:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
-./dij.cpp:70:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
-./dij.cpp:71:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
-./drumuri.cpp:27:  Missing space around colon in range-based for loop  [whitespace/forcolon] [2]
-./drumuri.cpp:70:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
-./trenuri.cpp:44:  Missing space around colon in range-based for loop  [whitespace/forcolon] [2]
-./trenuri.cpp:56:  Missing space around colon in range-based for loop  [whitespace/forcolon] [2]
-./trenuri.cpp:71:  Missing space around colon in range-based for loop  [whitespace/forcolon] [2]
-./trenuri.cpp:74:  Missing space around colon in range-based for loop  [whitespace/forcolon] [2]
-./trenuri.cpp:75:  Lines should be <= 80 characters long  [whitespace/line_length] [2]
-Done processing ./dij.cpp
 Done processing ./drumuri.cpp
 Done processing ./numarare.cpp
-Done processing ./scandal.cpp
 Done processing ./trenuri.cpp
-Total errors found: 11
